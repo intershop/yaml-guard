@@ -1,6 +1,6 @@
 # 🛠️ Kustomize & YAML Validator Docker Image
 
-This Docker image is designed for validating Kubernetes manifests using tools like `yamllint`, `kustomize`, and `kubeval`. It can be integrated into CI/CD pipelines to ensure configuration quality and correctness.
+This Docker image is designed for validating Kubernetes manifests using tools like `yamllint`, `kustomize`, and `kubeconform`. It can be integrated into CI/CD pipelines to ensure configuration quality and correctness.
 
 ---
 
@@ -8,9 +8,9 @@ This Docker image is designed for validating Kubernetes manifests using tools li
 
 - **yamllint** – Lints YAML files for syntax and style errors.
 - **kustomize** – For Kubernetes-native configuration management.
-- **kubeval** – Validates Kubernetes manifests against schemas.
+- **kubeconform** – Validates Kubernetes manifests against schemas.
 - **jq, curl, git, bash, ca-certificates** – Essential system utilities.
-- **validate_kustomize.sh** – Custom script for validating kustomizations with kubeval.
+- **validate_kustomize.sh** – Custom script for validating kustomizations with kubeconform.
 
 ---
 
