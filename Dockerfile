@@ -17,10 +17,16 @@ RUN pip install yamllint
 RUN curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash && \
     mv kustomize /usr/local/bin/
 
-# kubeval setup
-RUN curl -L "https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz" | tar xz && \
-    mv kubeval /usr/local/bin/ && \
-    chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeval
+# # kubeval setup
+# RUN curl -L "https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz" | tar xz && \
+#     mv kubeval /usr/local/bin/ && \
+#     chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeval
+
+# kubeconform setup (replacing kubeval)
+RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz" | tar xz && \
+    mv kubeconform /usr/local/bin/ && \
+    chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeconform
+
 
 # Copy validate_kustomize.sh script and make it executable
 COPY scripts/validate_kustomize.sh /usr/local/bin/validate_kustomize.sh

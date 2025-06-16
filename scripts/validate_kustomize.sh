@@ -100,22 +100,38 @@ kustomization_build(){
      exit 1 # Exit code to make the pipeline fail
   fi
 
-  # # If kustomize build succeeds, verify output with kubeval
-  echo "Validating output with kubeval..."
-  echo "$KUSTOMIZE_BUILD_OUTPUT" | kubeval ${IGNORE_MISSING_SCHEMAS} --schema-location="file://${SCHEMA_LOCATION}" --force-color
+  # # # If kustomize build succeeds, verify output with kubeval
+  # echo "Validating output with kubeval..."
+  # echo "$KUSTOMIZE_BUILD_OUTPUT" | kubeval ${IGNORE_MISSING_SCHEMAS} --schema-location="file://${SCHEMA_LOCATION}" --force-color
+  # cmd_response=$?
+
+  # if [ $cmd_response -ne 0 ]; then
+  #   # Error if not a component and kubeval fails
+  #   if ! grep -qE '^kind: Component$' "${BUILD}/kustomization.yaml"; then
+  #       echo "[ERROR] Kubeval validation failed for ${BUILD}."
+  #       exit 1 # The exit code that will make the pipeline fail
+  #   else
+  #       # For components we can ignore the kubeval error for now (optional)
+  #       echo "[WARN] Kubeval validation failed for Component ${BUILD}, but continuing."
+  #   fi
+  # fi
+  # echo "[OK] Validation successful for ${BUILD}"
+
+  # If kustomize build succeeds, verify output with kubeconform
+  echo "Validating output with kubeconform..."
+  echo "$KUSTOMIZE_BUILD_OUTPUT" | kubeconform -strict -schema-location="file://${SCHEMA_LOCATION}" -output json
   cmd_response=$?
 
   if [ $cmd_response -ne 0 ]; then
-    # Error if not a component and kubeval fails
-    if ! grep -qE '^kind: Component$' "${BUILD}/kustomization.yaml"; then
-        echo "[ERROR] Kubeval validation failed for ${BUILD}."
-        exit 1 # The exit code that will make the pipeline fail
-    else
-        # For components we can ignore the kubeval error for now (optional)
-        echo "[WARN] Kubeval validation failed for Component ${BUILD}, but continuing."
-    fi
+      # Error if not a component and kubeconform fails
+      if ! grep -qE '^kind: Component$' "${BUILD}/kustomization.yaml"; then
+          echo "[ERROR] Kubeconform validation failed for ${BUILD}."
+          exit 1 # The exit code that will make the pipeline fail
+      else
+          # For components we can ignore the kubeconform error for now (optional)
+          echo "[WARN] Kubeconform validation failed for Component ${BUILD}, but continuing."
+      fi
   fi
-
   echo "[OK] Validation successful for ${BUILD}"
 }
 
