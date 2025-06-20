@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     bash \
     ca-certificates \
     jq \
+    gettext \  
     && apt-get clean
 
 # install yamllint with pip (works fine in Python environment)
