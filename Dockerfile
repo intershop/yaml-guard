@@ -30,7 +30,7 @@ RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubec
 
 # Copy yamllint config to /src/.yamllint
 COPY .yamllint /src/.yamllint
-COPY .yamllint_kustomize.yaml /src/.yamllint_kustomize.yaml
+#COPY .yamllint_kustomize.yaml /src/.yamllint_kustomize.yaml
 
 
 
