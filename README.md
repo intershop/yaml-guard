@@ -19,7 +19,7 @@ This Docker image is designed for validating Kubernetes manifests using tools li
 To build the Docker image locally, run:
 
 ```bash
-docker build -t kustomize-validator .
+docker build -t intershophub/yaml-guard .
 ```
 
 ---
@@ -31,19 +31,25 @@ docker build -t kustomize-validator .
 Run the image and start an interactive shell:
 
 ```bash
-docker run -it --rm -v $(pwd):/src kustomize-validator bash
+docker run -it --rm -v $(pwd):/src intershophub/yaml-guard bash
 ```
 
 ### Lint a YAML file
 
 ```bash
-docker run --rm -v $(pwd):/src kustomize-validator yamllint /src/path/to/file.yaml
+docker run --rm \
+  -v "$PWD":/yamls \
+  intershophub/yaml-guard \
+  yamllint -c /src/.yamllint /yamls
 ```
 
 ### Validate Kustomizations
 
 ```bash
-docker run --rm -v $(pwd):/src kustomize-validator /usr/local/bin/validate_kustomize.sh /src/kustomizations-folder
+docker run --rm \
+  -v "$PWD":/src \
+  intershophub/yaml-guard \
+  bash /usr/local/bin/validate_kustomize.sh -d /src
 ```
 
 ---
