@@ -14,12 +14,12 @@ This Docker image is designed for validating Kubernetes manifests using tools li
 
 ---
 
-## 🐳 Building the Image
+## 🐳 Pull the Image
 
-To build the Docker image locally, run:
+To pull  the Docker image locally, run:
 
 ```bash
-docker build -t intershophub/yaml-guard .
+docker pull intershophub/yaml-guard:latest
 ```
 
 ---
