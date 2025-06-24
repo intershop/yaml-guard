@@ -28,6 +28,11 @@ RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubec
     mv kubeconform /usr/local/bin/ && \
     chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeconform
 
+# Copy yamllint config to /src/.yamllint
+COPY .yamllint /src/.yamllint
+COPY .yamllint_kustomize.yaml /src/.yamllint_kustomize.yaml
+
+
 
 # Copy validate_kustomize.sh script and make it executable
 COPY scripts/validate_kustomize.sh /usr/local/bin/validate_kustomize.sh
