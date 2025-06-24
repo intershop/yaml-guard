@@ -25,15 +25,6 @@ docker build -t intershophub/yaml-guard .
 ---
 
 ## 🚀 Usage
-
-### Interactive Shell
-
-Run the image and start an interactive shell:
-
-```bash
-docker run -it --rm -v $(pwd):/src intershophub/yaml-guard bash
-```
-
 ### Lint a YAML file
 
 ```bash
