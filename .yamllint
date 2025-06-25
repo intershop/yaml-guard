@@ -1,8 +1,6 @@
 extends: default
 
 ignore: |
-  azure-pipelines.yml
-  checker-pipeline.yml
   kustomizations-folder
 
 rules:
