@@ -24,6 +24,8 @@ rules:
     level: warning
 
   indentation:
+    spaces: 2
+    indent-sequences: false
     level: error  # may cause a syntax error, it makes sense to protect it
 
   document-start:
