@@ -24,9 +24,11 @@ rules:
     level: warning
 
   indentation:
-    spaces: 2
-    indent-sequences: false
-    level: error  # may cause a syntax error, it makes sense to protect it
+    spaces: consistent
+    indent-sequences: whatever
+    check-multi-line-strings: false
+    level: error
+
 
   document-start:
     level: warning
@@ -38,5 +40,3 @@ rules:
   brackets:
     max-spaces-inside: 1
     level: warning
-
-  indent-sequences: whatever
