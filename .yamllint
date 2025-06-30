@@ -28,3 +28,13 @@ rules:
 
   document-start:
     level: warning
+  
+  empty-lines:
+    max: 2
+    level: warning
+  
+  brackets:
+    max-spaces-inside: 1
+    level: warning
+
+  indent-sequences: whatever
