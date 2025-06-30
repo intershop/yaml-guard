@@ -29,6 +29,7 @@ rules:
     check-multi-line-strings: false
     level: error
 
+  new-lines: disable
 
   document-start:
     level: warning
