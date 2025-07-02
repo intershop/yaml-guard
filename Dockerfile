@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
 # install yamllint with pip (works fine in Python environment)
 RUN pip install yamllint
 
-# kustomize setup
-RUN curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash && \
+# kustomize setup (old script commented out, using direct download instead)
+# RUN curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash && \
+#     mv kustomize /usr/local/bin/
+
+RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz | tar xz && \
     mv kustomize /usr/local/bin/
 
 # # kubeval setup
