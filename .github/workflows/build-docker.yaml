@@ -20,3 +20,10 @@ jobs:
 
     - name: Push image to Docker Hub
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/yaml-guard:latest
+    
+    - name: Run yamllint tests on yamls-to-test directory
+      run: |
+        docker run --rm \
+          -v "$PWD/yamls-to-test":/yamls \
+          ${{ secrets.DOCKERHUB_USERNAME }}/yaml-guard:latest \
+          yamllint -c /src/.yamllint /yamls
