@@ -1,3 +1,4 @@
+---
 apiVersion :v1   #  space before colon, no space after
 kind: Pod
 metadata:
