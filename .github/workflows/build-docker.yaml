@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build ./yaml-guard -t dogancan4040/yaml-guard:latest
+      run: docker build . -t dogancan4040/yaml-guard:latest
     - name: Push image to Docker Hub
       run: |
         docker push dogancan4040/yaml-guard:latest
