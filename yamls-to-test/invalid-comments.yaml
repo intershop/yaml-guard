@@ -1,0 +1,3 @@
+#Bad comment  #  comment should have at least 1 space after '#'
+apiVersion: v1
+kind: Deployment

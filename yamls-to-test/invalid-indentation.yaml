@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+ metadata:   #  incorrect indentation
+   name: my-service
+spec:
+ ports:     #  inconsistent indentation
+   - port: 80

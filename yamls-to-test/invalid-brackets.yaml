@@ -1,0 +1,2 @@
+spec:
+  containers: [ nginx , redis ]  #  too many spaces inside brackets
