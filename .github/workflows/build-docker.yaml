@@ -23,8 +23,8 @@ jobs:
         docker run --rm \
           -v "$PWD/yamls-to-test":/yamls \
           ${{ secrets.DOCKERHUB_USERNAME }}/yaml-guard:latest \
-          yamllint -c /src/.yamllint /yamls || true
-          | sed 's/\r$//' | sed 's/ *$//' | sort > actual_output.txt
+          yamllint -c /src/.yamllint /yamls \
+          | sed 's/\r$//' | sed 's/ *$//' | sort > actual_output.txt || true
     
     - name: Normalize, sort and compare yamllint outputs
       run: |
