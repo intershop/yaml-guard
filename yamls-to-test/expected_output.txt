@@ -1,16 +1,16 @@
+/yamls/invalid-comments.yaml
+  1:2       warning  missing starting space in comment  (comments)
+
 /yamls/invalid-trailing-spaces.yaml
   2:15      warning  trailing spaces  (trailing-spaces)
   3:16      warning  trailing spaces  (trailing-spaces)
 
-/yamls/invalid-colons.yaml
-  3:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
-  5:10      warning  too many spaces after colon  (colons)
+/yamls/invalid-brackets.yaml
+  3:22      error    too many spaces before comma  (commas)
 
 /yamls/invalid-indentation.yaml
   4:10      error    syntax error: mapping values are not allowed here (syntax)
 
-/yamls/invalid-brackets.yaml
-  3:22      error    too many spaces before comma  (commas)
-
-/yamls/invalid-comments.yaml
-  1:2       warning  missing starting space in comment  (comments)
+/yamls/invalid-colons.yaml
+  3:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
+  5:10      warning  too many spaces after colon  (colons)
