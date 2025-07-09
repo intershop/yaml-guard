@@ -19,18 +19,31 @@ RUN pip install yamllint
 # RUN curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash && \
 #     mv kustomize /usr/local/bin/
 
-RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz | tar xz && \
-    mv kustomize /usr/local/bin/
+# Direct download and extraction of kustomize old version
+# RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz | tar xz && \
+#     mv kustomize /usr/local/bin/
+
+RUN curl -L https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.3.0/kustomize_v5.3.0_linux_amd64.tar.gz -o /tmp/kustomize.tar.gz && \
+    tar -xzf /tmp/kustomize.tar.gz -C /tmp && \
+    mv /tmp/kustomize /usr/local/bin/kustomize && \
+    rm -f /tmp/kustomize.tar.gz
 
 # # kubeval setup
 # RUN curl -L "https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz" | tar xz && \
 #     mv kubeval /usr/local/bin/ && \
 #     chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeval
 
-# kubeconform setup (replacing kubeval)
-RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz" | tar xz && \
-    mv kubeconform /usr/local/bin/ && \
-    chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeconform
+# kubeconform setup (replacing kubeval) old version
+# RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz" | tar xz && \
+#     mv kubeconform /usr/local/bin/ && \
+#     chmod +x /usr/local/bin/kustomize /usr/local/bin/kubeconform
+
+# kubeconform setup (replacing kubeval) new version
+RUN curl -L "https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz" -o /tmp/kubeconform.tar.gz && \
+    tar -xzf /tmp/kubeconform.tar.gz -C /tmp && \
+    mv /tmp/kubeconform /usr/local/bin/kubeconform && \
+    chmod +x /usr/local/bin/kubeconform && \
+    rm -f /tmp/kubeconform.tar.gz
 
 # Copy yamllint config to /src/.yamllint
 COPY .yamllint /src/.yamllint
