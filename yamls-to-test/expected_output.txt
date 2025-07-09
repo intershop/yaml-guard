@@ -5,7 +5,7 @@
   2:15      warning  trailing spaces  (trailing-spaces)
   3:16      warning  trailing spaces  (trailing-spaces)
 
-/yamls/invalid-brackets.yaml-dt
+/yamls/invalid-brackets.yaml
   3:22      error    too many spaces before comma  (commas)
 
 /yamls/invalid-indentation.yaml
