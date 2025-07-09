@@ -28,8 +28,10 @@ jobs:
     
     - name: Compare yamllint output to expected output
       run: |
+        sed 's/\r$//' actual_output.txt > actual_output_unix.txt
+        sed 's/\r$//' yamls-to-test/expected_output.txt > expected_output_unix.txt
         echo "Comparing actual output to expected output..."
-        diff -u yamls-to-test/expected_output.txt actual_output.txt || (echo "Output mismatch!" && exit 1)
+        diff -u expected_output_unix.txt actual_output_unix.txt || (echo "Output mismatch!" && exit 1)
         echo "Output matches expected."
 
     - name: Push image to Docker Hub
