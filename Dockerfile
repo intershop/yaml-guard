@@ -1,15 +1,16 @@
 
-FROM python:3.10-slim
+FROM python:3.10-alpine
 
 # System dependencies and tools
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     curl \
     git \
     bash \
     ca-certificates \
     jq \
-    gettext \  
-    && apt-get clean
+    gettext \
+    && pip install yamllint \
+    && rm -rf /var/cache/apk/*
 
 # install yamllint with pip (works fine in Python environment)
 RUN pip install yamllint
