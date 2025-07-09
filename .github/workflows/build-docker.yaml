@@ -24,15 +24,20 @@ jobs:
           -v "$PWD/yamls-to-test":/yamls \
           ${{ secrets.DOCKERHUB_USERNAME }}/yaml-guard:latest \
           yamllint -c /src/.yamllint /yamls || true
-          > actual_output.txt
+          | sed 's/\r$//' | sed 's/ *$//' | sort > actual_output.txt
     
-    - name: Compare yamllint output to expected output
+    - name: Normalize, sort and compare yamllint outputs
       run: |
-        sed 's/\r$//' actual_output.txt | sed 's/ *$//' > actual_output_clean.txt
-        sed 's/\r$//' yamls-to-test/expected_output.txt | sed 's/ *$//' > expected_output_clean.txt
-        echo "Comparing actual output to expected output..."
-        diff -u expected_output_clean.txt actual_output_clean.txt || (echo "Output mismatch!" && exit 1)
-        echo "Output matches expected."
+        sed 's/\r$//' yamls-to-test/expected_output.txt | sed 's/ *$//' | sort > expected_output_clean.txt
+        echo "Comparing actual and expected outputs..."
+        diff_output=$(diff -u expected_output_clean.txt actual_output.txt || true)
 
+        if [ -n "$diff_output" ]; then
+          echo "$diff_output"
+          echo "::error::Output mismatch detected! See diff above."
+          exit 1
+        else
+          echo "Output matches expected!"
+        fi
     - name: Push image to Docker Hub
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/yaml-guard:latest
