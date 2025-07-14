@@ -9,7 +9,6 @@ RUN apk add --no-cache \
     ca-certificates \
     jq \
     gettext \
-    && pip install yamllint \
     && rm -rf /var/cache/apk/*
 
 # install yamllint with pip (works fine in Python environment)
