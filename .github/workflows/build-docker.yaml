@@ -28,7 +28,7 @@ jobs:
     
     - name: Normalize, sort and compare yamllint outputs
       run: |
-        sed 's/\r$//' $PWD/expected_output.txt | sed 's/ *$//' | grep -v '^$' | sort > expected_output_clean.txt
+        sed 's/\r$//' test/expected_output.txt | sed 's/ *$//' | grep -v '^$' | sort > expected_output_clean.txt
         echo "Comparing actual and expected outputs..."
         diff_output=$(diff -u expected_output_clean.txt actual_output.txt || true)
 
