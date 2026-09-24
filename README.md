@@ -1,3 +1,6 @@
+**⚠️ This repository has been migrated to [cloud-cicd-yaml-guard](https://dev.azure.com/intershop-com/Products/_git/cloud-cicd-yaml-guard).**
+
+
 # 🛠️ Kustomize & YAML Validator Docker Image
 
 This Docker image is designed for validating Kubernetes manifests using tools like `yamllint`, `kustomize`, and `kubeconform`. It can be integrated into CI/CD pipelines to ensure configuration quality and correctness.
